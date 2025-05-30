@@ -61,3 +61,12 @@ class BasePage:
     def switch_to_default_content(self):
         """Возвращается из iframe в основной контент"""
         self.driver.switch_to.default_content()
+
+    def is_radio_selected(self, locator) -> bool:
+        """Проверяет, выбран ли radio button"""
+        return self.driver.find_element(*locator).is_selected()
+
+    def select_radio(self, locator):
+        """Выбирает radio button, если не выбран"""
+        if not self.is_radio_selected(locator):
+            self.click(locator)
